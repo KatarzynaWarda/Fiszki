@@ -22,6 +22,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    // a tutaj wywołujesz już metodę do aplikacji
+                    //dlatego jak klikniesz run to będzie android a nie Róża
                     Greeting("Android")
                 }
             }
@@ -29,15 +31,17 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// tutaj dodajesz elementy do layout typu Text button itd itd
 @Composable
 fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
 
+// tutaj jest testowanie po prawej stronie się to zmiena, masz cały czas podgląd na to co się dzieje
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     FiszkiTheme {
-        Greeting("Android")
+        Greeting("Róża")
     }
 }
