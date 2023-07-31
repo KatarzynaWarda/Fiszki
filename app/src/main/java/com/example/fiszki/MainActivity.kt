@@ -23,8 +23,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     // a tutaj wywołujesz już metodę do aplikacji
-                    //dlatego jak klikniesz run to będzie android a nie Róża
-                    Greeting("Android")
+                    //dlatego jak klikniesz run to będzie Kasia a nie Róża
+                    Greeting("Kasia")
                 }
             }
         }
