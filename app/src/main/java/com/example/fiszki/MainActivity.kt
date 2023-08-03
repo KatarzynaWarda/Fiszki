@@ -6,6 +6,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -18,6 +20,7 @@ import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.fiszki.ui.theme.FiszkiTheme
@@ -25,6 +28,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 class MainActivity : ComponentActivity() {
+    val newScreen = NewScreen()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -36,28 +40,12 @@ class MainActivity : ComponentActivity() {
                 ) {
                     // a tutaj wywołujesz już metodę do aplikacji
                     //dlatego jak klikniesz run to będzie Kasia a nie Róża
-                    newScreen()
+                    newScreen.newScreen()
                 }
             }
         }
     }
 }
-
-// przejscie z ekranu 1 na 2, number to ilość przycisków z ktorych każdy będzie repersentować folder
-// a ilość folderów myśle że najprościej zrobić w liście gdzie będą przechowywane nazwy
-@Composable
-fun newScreen (){
-    val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "startingScreen") {
-        composable("startingScreen"){
-            StartingScreen(number = 5,navController)
-        }
-        composable("addingFile"){
-            AddingFile()
-        }
-    }
-}
-
 // tutaj dodajesz elementy do layout typu Text button itd itd
 @Composable
 fun StartingScreen(number: Int, navController: NavController) {
@@ -66,23 +54,27 @@ fun StartingScreen(number: Int, navController: NavController) {
     Column () {
         Text(text = "Miło Cię znów widzieć!")
 
-
-        IconButton(onClick = {  navController.navigate("addingFile") }) {
-
-            Icon(
-                imageVector = Icons.Default.Add,
-                contentDescription = null)
-            
-        }
-
-
-
         for (file in files){
-            Button(onClick = { navController.navigate("addingFile")}) {
+            Button(onClick = { navController.navigate("flashcards")}) {
                 Text(text = file.toString())
             }
         }
+
+        IconButton(onClick = {  navController.navigate("addingFile") }) {
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = null,
+                Modifier.padding(end = 15.dp)
+            )
+        }
     }
+
+}
+
+@Composable
+fun Flashcards() {
+
+    Text(text = "flashcards")
 
 }
 
@@ -105,6 +97,7 @@ fun AddingFile() {
 @Composable
 fun DefaultPreview() {
     FiszkiTheme {
-        newScreen()
+        val newScreen = NewScreen()
+        newScreen.newScreen()
     }
 }
