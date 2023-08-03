@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "265430693474",
+    "project_id": "fiszki-df360",
+    "storage_bucket": "fiszki-df360.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265430693474:android:5e728d8e12900f3571433b",
+        "android_client_info": {
+          "package_name": "com.example.fiszki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "265430693474-45e1npk7evff5cl830kfft2llletk1lh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHw-PpueyVhb7AwQTiPz4uH_MBW5UhJlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "265430693474-45e1npk7evff5cl830kfft2llletk1lh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
