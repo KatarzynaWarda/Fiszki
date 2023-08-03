@@ -7,9 +7,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -61,6 +66,17 @@ fun StartingScreen(number: Int, navController: NavController) {
     Column () {
         Text(text = "Miło Cię znów widzieć!")
 
+
+        IconButton(onClick = {  navController.navigate("addingFile") }) {
+
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = null)
+            
+        }
+
+
+
         for (file in files){
             Button(onClick = { navController.navigate("addingFile")}) {
                 Text(text = file.toString())
@@ -72,6 +88,15 @@ fun StartingScreen(number: Int, navController: NavController) {
 
 @Composable
 fun AddingFile() {
+
+    IconButton(onClick = { /*TODO*/ }) {
+        Icon(
+            imageVector = Icons.Default.Done,
+            contentDescription = null)
+
+    }
+
+
     Text(text = "Hello Android!")
 }
 
