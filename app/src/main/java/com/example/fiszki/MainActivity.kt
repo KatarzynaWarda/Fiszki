@@ -1,5 +1,6 @@
 package com.example.fiszki
 
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
@@ -41,6 +42,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import com.google.firebase.FirebaseApp
+import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -72,14 +75,36 @@ class MainActivity : ComponentActivity() {
 // tutaj dodajesz elementy do layout typu Text button itd itd
 @Composable
 fun StartingScreen(number: Int, navController: NavController) {
-    val files = IntArray(number)
+//    val files = IntArray(number)
 
     Column() {
         Text(text = "Miło Cię znów widzieć!")
+        val db = Firebase.firestore
+        var fcList = listOf<String>()
 
-        for (file in files) {
+//TUTAJ TRZEBA OGARNĄĆ JAK POBRAĆ LISTĘ z firebasa albo collekcji (bo to można łątwo zmienić albo documentów
+        // bo teraz mamy strukturę kolekcja>dokument>kolekcja>dokument
+        // i jeśli zostaiwamy w ten sposób to musimy pobrać listę pierwszych dokumentów ale jest problem, że wtedy to nie jest zwykła collection tylko collectionGroup
+        // możemy zmienić żeby pierwsza kolekcja to były już nazwy folderów i wtedu już jest zwykła collection ale też nie wiem jak pobrać listę nazw z pierwszego collection
+        db.collectionGroup("flashcards")
+            .get()
+            .addOnSuccessListener { querySnapShot: QuerySnapshot ->
+                for (document in querySnapShot.documents) {
+                    val docName = document.id
+
+                    Log.d(
+                        ContentValues.TAG,
+                        "DocumentSnapshot successfully written!" + docName
+                    )
+                    fcList += docName
+                }
+            }
+
+//        val files = IntArray(colRef)
+
+        for (fcList in fcList) {
             Button(onClick = { navController.navigate("flashcards") }) {
-                Text(text = file.toString())
+                Text(text = fcList.toString())
             }
         }
 
@@ -100,8 +125,6 @@ fun Flashcards() {
     Text(text = "flashcards")
 
 }
-
-
 
 // tutaj jest testowanie po prawej stronie się to zmiena, masz cały czas podgląd na to co się dzieje
 @Preview(showBackground = true)

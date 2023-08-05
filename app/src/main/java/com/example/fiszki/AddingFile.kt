@@ -1,6 +1,6 @@
 package com.example.fiszki
 
-import android.annotation.SuppressLint
+
 import android.content.ContentValues
 import android.util.Log
 import android.widget.Toast
@@ -54,7 +54,7 @@ fun AddingFile(navController: NavController) {
                 if (folderName.isNotBlank()) {
                     pairs.forEachIndexed { index, pair ->
                         if (pair.entry.isNotBlank() && pair.def.isNotBlank()) {
-                            db.collection(folderName).document("pair_$index")
+                            db.collection("flashcards").document(folderName).collection("pair_$index").document("pair_$index")
                                 .set(pair)
                                 .addOnSuccessListener {
                                     Log.d(
