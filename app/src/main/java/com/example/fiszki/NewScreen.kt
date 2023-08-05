@@ -14,7 +14,7 @@ class NewScreen {
                 StartingScreen(number = 5,navController)
             }
             composable("addingFile"){
-                AddingFile()
+                AddingFile(navController)
             }
             composable("flashcards"){
                 Flashcards()
